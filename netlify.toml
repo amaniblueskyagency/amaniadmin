@@ -13,17 +13,9 @@
   to = "/production/index.html"
   status = 302
 
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api-proxy?path=:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/health"
-  to = "/.netlify/functions/api-proxy?path=__health__"
-  status = 200
-  force = true
+# /api/* and /health are registered directly by
+# netlify/functions/api-proxy.mjs: config.path.
+# Do NOT reintroduce ?path=:splat redirects here.
 
 [[headers]]
   for = "/*"
