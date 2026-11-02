@@ -1,0 +1,317 @@
+@use "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.min.css";
+
+:root {
+  --amani-sidebar: #0f2742;
+  --amani-sidebar-deep: #091a2f;
+  --amani-sidebar-soft: #13365b;
+  --amani-accent: #147fb5;
+  --amani-accent-2: #2ea8c6;
+  --amani-accent-soft: #eaf5fd;
+  --amani-bg: #f4f7fb;
+  --amani-surface: #ffffff;
+  --amani-border: #dbe5ef;
+  --amani-text: #60748a;
+  --amani-heading: #0e2e50;
+  --amani-shadow: 0 18px 40px rgba(15,39,66,.08);
+}
+
+html, body { min-height: 100%; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top right, rgba(46,168,198,.10), transparent 28%),
+    linear-gradient(180deg, #f8fbfe 0%, #f4f7fb 42%, #eef3f8 100%);
+  color: var(--amani-text);
+  font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+button, input, select, textarea { font: inherit; }
+a { text-decoration: none; }
+.amani-shell { min-height: 100vh; }
+.amani-sidebar {
+  position: fixed; inset: 0 auto 0 0; width: 258px; overflow-y: auto;
+  background: linear-gradient(180deg, var(--amani-sidebar) 0%, var(--amani-sidebar-soft) 38%, var(--amani-sidebar-deep) 100%);
+  color: #fff; z-index: 1030; transition: width .2s ease; box-shadow: 16px 0 32px rgba(9,26,47,.18);
+}
+.amani-brand {
+  display:flex; align-items:center; gap:14px; min-height:74px; padding:16px 18px;
+  border-bottom:1px solid rgba(255,255,255,.09); color:#fff;
+}
+.amani-brand:hover { color:#fff; }
+.amani-brand-mark {
+  width:48px; height:48px; border-radius:16px; display:grid; place-items:center;
+  background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.05));
+  border:1px solid rgba(255,255,255,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 10px 22px rgba(0,0,0,.16);
+  flex:0 0 auto;
+}
+.amani-brand-mark img { width:30px; height:30px; object-fit:contain; }
+.amani-brand-copy { display:flex; flex-direction:column; line-height:1.1; }
+.amani-brand-copy strong { font-size:20px; font-weight:800; letter-spacing:-.02em; color:#fff; }
+.amani-brand-copy small { color: rgba(255,255,255,.72); font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-top:3px; }
+.amani-profile {
+  margin: 14px 14px 10px; padding: 14px; display:flex; gap:12px; align-items:center;
+  border:1px solid rgba(255,255,255,.11); border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+.amani-profile img { width: 46px; height: 46px; object-fit: contain; background: rgba(255,255,255,.96); border-radius: 16px; padding: 6px; box-shadow: 0 8px 18px rgba(0,0,0,.16); }
+.amani-profile small { display:block; color: rgba(255,255,255,.68); font-size:11px; letter-spacing:.04em; }
+.amani-profile strong { color:#fff; font-size:21px; font-weight:800; line-height:1.1; }
+.amani-menu-section { padding: 16px 16px 6px; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.55); font-weight:700; }
+.amani-menu, .amani-submenu { list-style: none; margin: 0; padding: 0; }
+.amani-menu > li > a, .amani-submenu a {
+  display:flex; align-items:center; gap:10px; color:rgba(255,255,255,.88); text-decoration:none; padding:10px 16px; border-left:3px solid transparent;
+}
+.amani-menu > li > a:hover, .amani-submenu a:hover, .amani-submenu a.active {
+  background: linear-gradient(90deg, rgba(20,127,181,.22), rgba(46,168,198,.08)); color:#fff; border-left-color: var(--amani-accent);
+}
+.amani-menu .group-title { font-weight:700; color:#fff; padding-top:12px; cursor:default; }
+.amani-submenu a { padding-left: 40px; font-size: 13px; border-radius: 0 14px 14px 0; margin-right:10px; }
+.amani-content-wrap { margin-left: 258px; min-height: 100vh; transition: margin-left .2s ease; }
+.amani-topbar {
+  position: sticky; top: 0; z-index: 1020; min-height: 72px; background: rgba(255,255,255,.88); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--amani-border); display:flex; align-items:center; justify-content:space-between; padding: 0 22px;
+}
+.amani-menu-toggle { border: 0; background: transparent; color: var(--amani-heading); font-size: 26px; width:42px; height:42px; border-radius: 12px; }
+.amani-menu-toggle:hover { background:#eef5fb; }
+.amani-main { padding: 26px; }
+.amani-page-title { margin-bottom: 20px; display:flex; gap:12px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
+.amani-page-title h1 { margin:0; color:var(--amani-heading); font-size: 34px; font-weight:800; letter-spacing:-.03em; }
+.amani-page-title .small { font-size:14px; color:#708399 !important; }
+.amani-panel {
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(247,250,253,.96));
+  border:1px solid var(--amani-border); border-radius:18px; box-shadow: var(--amani-shadow); padding:20px; margin-bottom:18px;
+}
+.amani-panel h5 { color: var(--amani-heading); font-size: 18px; font-weight: 800; letter-spacing: -.01em; margin-bottom: 14px; }
+.amani-kpi {
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(244,248,252,.98) 100%);
+  border:1px solid var(--amani-border); border-radius:18px; padding:18px; height:100%; box-shadow: var(--amani-shadow);
+}
+.amani-kpi .value { font-size: 30px; color: var(--amani-heading); font-weight: 800; letter-spacing:-.03em; }
+.amani-kpi .label { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color:#7a8da1; font-weight:800; margin-bottom:8px; }
+.amani-chart { min-height: 320px; position: relative; }
+.amani-chart canvas { max-height: 320px; }
+.amani-status { display:inline-flex; align-items:center; gap:8px; font-size:12px; }
+.amani-dot { width:8px; height:8px; border-radius:50%; display:inline-block; background:#adb5bd; box-shadow:0 0 0 4px rgba(173,181,189,.18); }
+.amani-status.ok .amani-dot { background: #16a34a; box-shadow:0 0 0 4px rgba(22,163,74,.14); }
+.amani-status.bad .amani-dot { background: #dc2626; box-shadow:0 0 0 4px rgba(220,38,38,.14); }
+.amani-field-help { font-size: 11px; color: #8a98a8; }
+.amani-json { font-family: Consolas, monospace; font-size: 12px; white-space: pre-wrap; word-break: break-word; }
+.amani-footer { padding: 18px 24px 30px; text-align: right; font-size: 12px; color:#8da0b4; }
+body.sidebar-collapsed .amani-sidebar { width: 78px; }
+body.sidebar-collapsed .amani-content-wrap { margin-left: 78px; }
+body.sidebar-collapsed .amani-brand { justify-content:center; padding-left:10px; padding-right:10px; }
+body.sidebar-collapsed .amani-brand-copy, body.sidebar-collapsed .amani-profile div, body.sidebar-collapsed .amani-menu-section, body.sidebar-collapsed .amani-menu span.menu-text, body.sidebar-collapsed .amani-submenu { display: none; }
+body.sidebar-collapsed .amani-brand-mark { width:42px; height:42px; }
+body.sidebar-collapsed .amani-menu > li > a, body.sidebar-collapsed .amani-menu .group-title { justify-content:center; font-size:20px; padding-left:10px; padding-right:10px; }
+@media (max-width: 900px) {
+  .amani-sidebar { transform: translateX(-100%); width: 258px; transition: transform .2s ease; }
+  .amani-content-wrap { margin-left: 0; }
+  body.sidebar-open .amani-sidebar { transform: translateX(0); }
+  .amani-main { padding: 16px; }
+}
+
+/* Standalone Admin application */
+.amani-topbar-right { display:flex; align-items:center; gap:14px; }
+.amani-area-badge {
+  display:inline-flex; align-items:center; gap:8px; border:1px solid #d7e6f2; background:#f6fbff; border-radius:999px;
+  padding:6px 12px; color:var(--amani-heading); font-size:12px; font-weight:700; box-shadow:0 8px 18px rgba(14,46,80,.05);
+}
+
+/* Accordion navigation */
+.amani-menu .group-title {
+  width:100%; border:0; background:transparent; text-align:left; display:flex; align-items:center; gap:10px; font-weight:700;
+  color:#fff; padding:12px 16px 10px; border-left:3px solid transparent; cursor:pointer;
+}
+.amani-menu .group-title:hover, .amani-menu-group.open > .group-title {
+  background: linear-gradient(90deg, rgba(20,127,181,.22), rgba(46,168,198,.08)); border-left-color: var(--amani-accent);
+}
+.amani-menu .submenu-caret { margin-left:auto; font-size:11px; transition: transform .18s ease; }
+.amani-menu-group.open > .group-title .submenu-caret { transform: rotate(180deg); }
+.amani-submenu[hidden] { display: none !important; }
+.amani-menu-group.open > .amani-submenu { display: block; }
+body.sidebar-collapsed .amani-menu .submenu-caret { display:none; }
+
+@media (max-width: 700px) {
+  .amani-topbar-right { gap:8px; }
+  .amani-area-badge { display:none; }
+  .amani-status { max-width:230px; }
+}
+
+/* Modern data tables */
+.amani-table-wrap {
+  overflow:auto; max-width:100%; background:#fff; border:1px solid var(--amani-border); border-radius:18px;
+  box-shadow: var(--amani-shadow);
+}
+.amani-table {
+  min-width:760px; margin:0; border-collapse:separate; border-spacing:0; font-size:13px;
+}
+.amani-table thead th {
+  position: sticky; top: 0; z-index: 1; padding: 12px 15px; background: linear-gradient(180deg,#f9fbfd 0%, #f0f5fa 100%);
+  border-bottom:1px solid #dde7f0; color:#5e7388; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap;
+}
+.amani-table tbody td {
+  padding: 10px 15px; border-bottom:1px solid #edf2f6; color:#314355; vertical-align:middle; max-width:280px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.amani-table tbody tr:nth-child(even) td { background: rgba(245,249,253,.58); }
+.amani-table tbody tr:last-child td { border-bottom:0; }
+.amani-table tbody tr { transition: background .15s ease, transform .15s ease; }
+.amani-table tbody tr:hover td { background:#f5faff; }
+.amani-table tbody tr:hover { transform: translateY(-1px); }
+/* Glossy status badges — semantic colors */
+.amani-status-pill { display:inline-flex;align-items:center;gap:7px;min-height:26px;padding:5px 11px;border-radius:999px;border:1px solid #dce4ed;background:linear-gradient(180deg,#f9fbfe,#eef2f7);color:#52667e;font-size:11px;font-weight:800;line-height:1;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 3px 8px rgba(16,46,80,.07); }
+.amani-pill-dot { width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:currentColor;box-shadow:0 0 0 2px rgba(255,255,255,.7); }
+.amani-status-pill.status-occupied,.amani-status-pill.status-active,.amani-status-pill.status-paid,.amani-status-pill.status-completed,.amani-status-pill.status-success{background:linear-gradient(180deg,#f0fff7,#d6f7e4);border-color:#aee6c5;color:#137c49;}
+.amani-status-pill.status-vacant,.amani-status-pill.status-available,.amani-status-pill.status-pending,.amani-status-pill.status-open{background:linear-gradient(180deg,#fff9ec,#ffecd0);border-color:#f6d49a;color:#995b07;}
+.amani-status-pill.status-maintenance,.amani-status-pill.status-under-maintenance,.amani-status-pill.status-under_maintenance,.amani-status-pill.status-overdue,.amani-status-pill.status-cancelled,.amani-status-pill.status-failed{background:linear-gradient(180deg,#fff3f4,#ffdddd);border-color:#efb0b6;color:#b42332;}
+.amani-status-pill.status-notice,.amani-status-pill.status-under-notice,.amani-status-pill.status-under_notice,.amani-status-pill.status-notice_given,.amani-status-pill.status-notice-given,.amani-status-pill.status-notice_to_vacate,.amani-status-pill.status-notice-to-vacate{background:linear-gradient(180deg,#f5f0ff,#e6dafc);border-color:#cbb6f1;color:#6941a5;}
+.amani-status-pill.status-reserved,.amani-status-pill.status-defaulted{background:linear-gradient(180deg,#ebf7ff,#dbeeff);border-color:#a4d5f4;color:#17649b;}
+.amani-status-pill.status-inactive,.amani-status-pill.status-vacated{background:linear-gradient(180deg,#f5f7fa,#e4e9ee);border-color:#cbd5df;color:#536678;}
+.amani-row-actions { display:flex; justify-content:flex-end; gap:6px; }
+.amani-action-btn {
+  padding: 5px 10px; border:1px solid #d8e0e8; border-radius:10px; background:linear-gradient(180deg,#fff 0%,#f7fafc 100%);
+  color:#405368; font-size:11px; font-weight:700; box-shadow:0 4px 10px rgba(15,39,66,.05);
+}
+.amani-action-btn:hover { background:#f5f9fd; color:#0e2e50; border-color:#c7d7e7; }
+.amani-action-btn.primary { border-color:#bed9ee; color:#1769aa; }
+.amani-action-btn.danger { border-color:#efcfcc; color:#b42318; }
+.amani-actions-heading, .amani-actions-cell { text-align:right; }
+.amani-muted { color:#98a2b3; }
+.amani-boolean { display:inline-flex; padding:3px 8px; border-radius:999px; background:#f2f4f7; color:#475467; font-size:11px; font-weight:700; }
+.amani-boolean.yes { background:#edf8f2; color:#18794e; }
+.amani-empty { padding:32px; text-align:center; color:#667085; background:#fff; border:1px solid var(--amani-border); border-radius:18px; box-shadow: var(--amani-shadow); }
+.amani-record-header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+.amani-record-header h2,.amani-record-header h3,.amani-record-header h4,.amani-record-header h5{margin:0;color:var(--amani-heading);font-weight:800;letter-spacing:-.02em;}
+.amani-form-card,.amani-detail-card{background:linear-gradient(180deg,#fff 0%,#f8fbfe 100%);border:1px solid var(--amani-border);border-radius:18px;box-shadow:var(--amani-shadow);}
+.amani-form-card .card-header,.amani-detail-card .card-header{background:transparent;border-bottom:1px solid #e5edf4;color:var(--amani-heading);font-weight:800;}
+.amani-form-control,.form-control,.form-select{border-radius:12px;border-color:#d6e1ea;min-height:42px;box-shadow:none;}
+.amani-form-control:focus,.form-control:focus,.form-select:focus{border-color:#8bbfe2;box-shadow:0 0 0 .2rem rgba(20,127,181,.14);}
+.btn-primary{background:linear-gradient(180deg,#167fb4 0%,#0e6fa2 100%);border-color:#0f6d9d;box-shadow:0 10px 20px rgba(20,127,181,.24);}
+.btn-primary:hover,.btn-primary:focus{background:linear-gradient(180deg,#136e9a 0%,#0c5f88 100%);border-color:#0c5f88;}
+.btn-success{background:linear-gradient(180deg,#20b18a 0%,#159f77 100%);border-color:#159f77;box-shadow:0 10px 20px rgba(32,177,138,.24);}
+.btn-outline-secondary{border-radius:12px;}
+
+/* All resource status variants — applies to the existing status-pill markup. */
+.amani-status-pill.status-for-rent,
+.amani-status-pill.status-for-hire,
+.amani-status-pill.status-for-sale,
+.amani-status-pill.status-published,
+.amani-status-pill.status-approved,
+.amani-status-pill.status-confirmed { background:linear-gradient(180deg,#ebf7ff,#d6edff);border-color:#9cccf0;color:#125f96; }
+.amani-status-pill.status-new,
+.amani-status-pill.status-unread,
+.amani-status-pill.status-in-progress,
+.amani-status-pill.status-follow-up,
+.amani-status-pill.status-pending,
+.amani-status-pill.status-awaiting-payment,
+.amani-status-pill.status-partial { background:linear-gradient(180deg,#fff9ea,#ffe7b9);border-color:#efcd86;color:#9b5c00; }
+.amani-status-pill.status-draft,
+.amani-status-pill.status-reserved,
+.amani-status-pill.status-defaulted,
+.amani-status-pill.status-under-notice,
+.amani-status-pill.status-notice-given { background:linear-gradient(180deg,#f7f1ff,#e4d8ff);border-color:#c8b3f0;color:#6836a7; }
+.amani-status-pill.status-rejected,
+.amani-status-pill.status-maintenance-required,
+.amani-status-pill.status-expired,
+.amani-status-pill.status-unpaid { background:linear-gradient(180deg,#fff2f2,#ffdcdc);border-color:#edaeb6;color:#aa2333; }
+.amani-status-pill.status-vacant { background:linear-gradient(180deg,#fff9e9,#ffe8c2);border-color:#ecc985;color:#9a5800; }
+.amani-boolean.yes { background:linear-gradient(180deg,#edfff5,#d9f8e7);border:1px solid #ade5c6;color:#137c49;box-shadow:inset 0 1px 0 #fff; }
+.amani-boolean:not(.yes) { background:linear-gradient(180deg,#f7f9fc,#e8edf4);border:1px solid #d5dee9;color:#53667d;box-shadow:inset 0 1px 0 #fff; }
+
+
+/* Premium blue visual layer — does not affect data access or endpoint logic */
+:root {
+ --amani-sidebar:#102f53;--amani-sidebar-deep:#071d39;--amani-sidebar-soft:#164577;
+ --amani-accent:#1669b5;--amani-accent-2:#56bbeb;--amani-accent-soft:#eaf4ff;
+ --amani-bg:#f3f7fc;--amani-border:#dfe8f3;--amani-heading:#102e50;
+ --amani-shadow:0 10px 28px rgba(16,48,89,.065);
+}
+body{font-family:"DM Sans",Inter,"Segoe UI",sans-serif;background:linear-gradient(170deg,#f8fbff,#eff5fb 65%,#f5f9fd);color:#586d82}
+h1,h2,h3,h4,h5,h6,.amani-brand-copy strong{font-family:"Manrope",Inter,"Segoe UI",sans-serif}
+.amani-brand-copy strong{font-size:17px}.amani-brand-copy small{letter-spacing:.055em}
+.amani-sidebar{box-shadow:8px 0 30px rgba(7,37,75,.12)}
+.amani-profile{border-color:#ffffff19}
+.amani-menu .group-title{font-size:12px;letter-spacing:.01em;padding-block:10px}
+.amani-submenu a{font-size:12px;padding-block:8px}
+.amani-submenu a.active{background:linear-gradient(95deg,#1b6eaeaa,#ffffff0c);border-left-color:#7ccaff}
+.amani-topbar{min-height:65px;border-bottom:1px solid #dfeaf5}
+.amani-main{padding:clamp(16px,2.5vw,30px)}
+.amani-page-title h1{font-size:clamp(23px,2.35vw,31px);font-weight:850}
+.amani-page-title .small{font-size:12px}
+.amani-panel,.amani-kpi,.amani-form-card,.amani-detail-card{border-radius:17px;box-shadow:var(--amani-shadow)}
+.amani-panel h5{font-size:16px}.amani-kpi .value{font-size:25px}.amani-kpi .label{font-size:10px;letter-spacing:.08em}
+.amani-chart{min-height:280px}.amani-chart canvas{max-height:280px}
+.amani-table{font-size:12px}.amani-table thead th{font-size:10px;padding:10px 12px}.amani-table tbody td{padding:8px 12px}
+.amani-action-btn{font-size:11px;border-radius:8px;padding:5px 9px}
+.amani-status-pill{min-height:23px;padding:4px 9px;font-size:10px}
+.btn-primary{background:linear-gradient(155deg,#338ddb,#115eab);border-color:#1466b8;box-shadow:0 7px 18px rgba(22,105,181,.16)}
+.btn-primary:hover{background:linear-gradient(155deg,#1c75c3,#0a4d94)}
+:focus-visible{outline:3px solid #82bdf6!important;outline-offset:3px}
+/* Structured record view — replaces JSON preformatted output */
+#amani-modal-host .modal-dialog{max-width:min(820px,calc(100vw - 22px))}
+#amani-modal-host .modal-content{border:1px solid #dbe7f3;border-radius:20px;overflow:hidden;box-shadow:0 30px 85px #0b315552}
+#amani-modal-host .modal-header{padding:17px 24px;background:linear-gradient(110deg,#f9fcff,#eff7ff);border-bottom:1px solid #e1ebf4}
+#amani-modal-host .modal-title{font-family:"Manrope",sans-serif;font-size:17px;letter-spacing:-.03em;font-weight:800;color:#123457}
+#amani-modal-host .modal-body{padding:22px 24px;background:#fafcff}
+#amani-modal-host .modal-footer{background:#fff;border-color:#e6eef5;padding:13px 24px}
+.amani-detail-view{display:grid;gap:17px;min-width:0}
+.amani-detail-hero{display:flex;align-items:center;gap:16px;border:1px solid #d8e8f7;background:linear-gradient(115deg,#fff,#ebf5ff);padding:20px;border-radius:16px;flex-wrap:wrap}
+.amani-detail-avatar{flex:0 0 53px;display:grid;place-items:center;height:53px;border-radius:16px;background:#dcefff;color:#1765ab;font-size:23px}
+.amani-detail-heading{flex:1;min-width:170px}
+.amani-detail-eyebrow,.amani-detail-kicker{font-size:10px;font-weight:800;letter-spacing:.105em;text-transform:uppercase;color:#1768ae}
+.amani-detail-heading h3{font-size:20px;line-height:1.3;margin:4px 0;color:#11375c;font-weight:800;overflow-wrap:anywhere}
+.amani-detail-heading>span{display:block;font-size:11px;color:#7990a5;overflow-wrap:anywhere}
+.amani-detail-message{background:#fff;border:1px solid #dce8f4;border-radius:15px;padding:22px 24px;border-left:4px solid #2584d1}
+.amani-detail-kicker{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.amani-detail-message p{font-size:14px;line-height:1.9;color:#304e6b;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+.amani-detail-section{padding:18px 20px;background:#fff;border:1px solid #e1eaf4;border-radius:15px}
+.amani-detail-section h6{display:flex;align-items:center;gap:8px;font-size:13px;letter-spacing:-.01em;font-weight:800;color:#1a426a;margin:0 0 16px;padding-bottom:11px;border-bottom:1px solid #edf2f8}
+.amani-detail-section h6 i{color:#1670b9;font-size:15px}
+.amani-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 22px;margin:0}
+.amani-detail-field{min-width:0}.amani-detail-field dt,.amani-detail-mini-grid dt{font-size:10px;letter-spacing:.045em;text-transform:uppercase;font-weight:800;color:#7990a5;margin-bottom:5px}
+.amani-detail-field dd,.amani-detail-mini-grid dd{font-size:13px;color:#244563;font-weight:600;margin:0;line-height:1.6;overflow-wrap:anywhere}
+.amani-detail-field a{color:#1269b4;text-decoration:none}.amani-detail-field a:hover{text-decoration:underline}
+.amani-detail-value{white-space:pre-wrap}.amani-detail-empty{color:#a2afbc;font-weight:400;font-style:italic}
+.amani-detail-tags{display:flex;flex-wrap:wrap;gap:6px}.amani-detail-tags span{border:1px solid #cde4f8;background:#eff7ff;color:#205f98;border-radius:99px;padding:4px 9px;font-size:11px}
+.amani-detail-mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:0}.amani-detail-mini-grid>div{background:#f7fbff;padding:10px;border:1px solid #e1ecf6;border-radius:10px}
+.amani-detail-nested{display:grid;gap:8px}.amani-detail-nested-item{background:#f7fbff;border:1px solid #e2eaf3;border-radius:10px;padding:9px;min-width:0}
+@media(max-width:640px){#amani-modal-host .modal-body{padding:12px}#amani-modal-host .modal-header{padding:15px}.amani-detail-hero{padding:15px}.amani-detail-section,.amani-detail-message{padding:15px}.amani-detail-grid,.amani-detail-mini-grid{grid-template-columns:minmax(0,1fr)}.amani-detail-heading h3{font-size:17px}.amani-status{max-width:200px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Signature interface edition 02 — design-only refinements. */
+.amani-sidebar {
+  background:radial-gradient(circle at 100% 0%,#194c82 0%,#0c315c 35%,#071d39 85%);
+  border-right:1px solid #ffffff17;
+}
+.amani-brand {border-bottom:1px solid #ffffff1d;}
+.amani-brand-mark {background:linear-gradient(140deg,#fff,#e6f4ff);border:1px solid #ffffffa6;box-shadow:0 10px 24px #0013254d;}
+.amani-topbar {background:rgba(255,255,255,.96);box-shadow:0 3px 18px #153b6509;}
+.amani-page-title {position:relative;margin-bottom:23px;padding:6px 0 4px 17px;}
+.amani-page-title::before {content:"";position:absolute;left:0;top:10px;bottom:12px;width:3px;border-radius:8px;background:linear-gradient(#47b1ee,#145eaa);}
+.amani-page-title h1 {font-size:clamp(23px,2.2vw,30px);letter-spacing:-.052em;}
+.amani-kpi {position:relative;overflow:hidden;background:linear-gradient(153deg,#fff,#f7fbff);border:1px solid #dfeaf5;box-shadow:0 12px 29px #103c6910;padding-top:22px;padding-bottom:21px;}
+.amani-kpi::before {content:"";position:absolute;left:0;top:0;right:0;height:3px;background:linear-gradient(90deg,#1559a0,#53b3e9);}
+.amani-kpi .value {font-size:clamp(23px,2vw,29px);letter-spacing:-.052em;color:#0c3157;}
+.amani-kpi .label {color:#7b8e9f;letter-spacing:.11em;font-size:10px;}
+.amani-panel {border:1px solid #e0eaf4;background:linear-gradient(165deg,#fff,#fbfdff);box-shadow:0 13px 35px #0b37630d;}
+.amani-panel>h5 {position:relative;padding-bottom:14px;margin-bottom:17px;border-bottom:1px solid #eaf0f5;}
+.amani-panel h5 {color:#193c62;letter-spacing:-.025em;}
+.amani-chart {min-height:273px;}
+.amani-table-wrap {border-radius:13px;box-shadow:none;border-color:#e2ebf4;}
+.amani-table thead th {background:#f0f6fc;color:#607b96;font-size:10px;}
+.amani-table tbody tr:hover td {background:#eaf5ff;}
+.amani-action-btn {transition:background .18s,border-color .18s,transform .18s;}
+.amani-action-btn:hover {transform:translateY(-1px);}
+.amani-form-card,.amani-detail-card {border-color:#e1ebf5;background:#fff;box-shadow:0 13px 35px #0b37630e;}
+#amani-modal-host .modal-header {background:linear-gradient(105deg,#092d53,#175f9e);}
+#amani-modal-host .modal-title {color:#fff;}
+#amani-modal-host .btn-close {filter:invert(1) grayscale(1);opacity:.9;}
+#amani-modal-host .modal-body {background:linear-gradient(180deg,#f7faff,#fff);}
+#amani-modal-host .modal-content {border-radius:18px;}
+@media(max-width:700px) {
+  .amani-kpi {padding-top:17px;padding-bottom:16px;}
+  .amani-page-title {margin-bottom:15px;}
+}
